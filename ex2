@@ -1,0 +1,16 @@
+class Monster():
+    def __init__(self, name, hp, dmg):
+        self.__name = name
+        self.__hp = hp
+        self.__dmg = dmg
+
+class Zombie(Monster):
+    def __init__(self, name, hp, dmg):
+        super().__init__(name, hp, dmg)
+        self.__dmg = dmg
+
+class Vampire(Monster):
+    def __init__(self, name, hp, dmg):
+        super().__init__(name, hp, dmg)
+        self.__dmg = dmg
+
