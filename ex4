@@ -1,0 +1,60 @@
+class Hunter:
+    def __init__(self, name):
+        self.__name = name
+        self.__hp = 100
+        self.__weapons = []  # приватный инвентарь
+    
+    # Геттеры
+    def get_name(self):
+        return self.__name
+    
+    def get_hp(self):
+        return self.__hp
+    
+    # Сеттер с защитой
+    def set_hp(self, value):
+        if value < 0:
+            self.__hp = 0
+        else:
+            self.__hp = value
+    
+    def is_alive(self):
+        return self.__hp > 0
+    
+    # Добавить оружие в инвентарь
+    def add_weapon(self, weapon):
+        self.__weapons.append(weapon)
+        print(f"{weapon.name} добавлен в инвентарь!")
+    
+    # Показать инвентарь с номерами
+    def show_inventory(self):
+        if not self.__weapons:
+            print("Инвентарь пуст!")
+            return
+        
+        print(f"\n--- Инвентарь {self.__name} ---")
+        for i, weapon in enumerate(self.__weapons):
+            print(f"{i+1}. {weapon.name}")
+        print("-" * 30)
+    
+    # Атаковать монстра выбранным оружием
+    def attack(self, weapon_index, monster):
+        if weapon_index < 0 or weapon_index >= len(self.__weapons):
+            print("Неверный индекс оружия!")
+            return
+        
+        weapon = self.__weapons[weapon_index]
+        weapon.use(monster)
+    
+    def show_status(self):
+        print(f"👨 {self.__name} HP: {self.__hp}")
+
+
+# Проверка
+print("=== ЭТАП 4 - Проверка ===")
+hunter = Hunter("Ван Хельсинг")
+hunter.add_weapon(SilverSword())
+hunter.add_weapon(HolyWater())
+hunter.add_weapon(CrossbowBolt())
+hunter.show_inventory()
+print()
